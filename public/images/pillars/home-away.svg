@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a4a36"/><stop offset="1" stop-color="#0a1f15"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.2" r="0.7">
+      <stop offset="0" stop-color="#1f5640" stop-opacity="0.5"/><stop offset="1" stop-color="#1f5640" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+  
+    <path d="M0 372 Q 200 300 400 360 T 800 336.00000000000006 V 600 H0 Z" fill="#0c2418" opacity="0.55"/>
+    <path d="M0 432 Q 240 372 496 420 T 800 408.00000000000006 V 600 H0 Z" fill="#091c12" opacity="0.7"/><circle cx="53" cy="348" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="113" cy="355" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="172" cy="362" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="213" cy="369" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="273" cy="348" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="332" cy="355" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="373" cy="362" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="433" cy="369" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="492" cy="348" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="533" cy="355" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="593" cy="362" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="652" cy="369" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="693" cy="348" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="753" cy="355" r="1.5" fill="#cdd5ce" opacity="0.45"/>
+  <g fill="none" stroke="#9aa39c" stroke-width="1" opacity="0.18">
+    <circle cx="624" cy="144" r="96"/>
+  </g>
+  <text x="50%" y="294" text-anchor="middle" font-family="Georgia, serif" font-style="italic"
+        font-size="18" fill="#c4ccc5" opacity="0.85">Home, away from home</text>
+  <text x="50%" y="318" text-anchor="middle" font-family="Inter, Arial, sans-serif"
+        font-size="10" letter-spacing="3" fill="#9aa39c" opacity="0.7">PILLAR IV</text>
+</svg>

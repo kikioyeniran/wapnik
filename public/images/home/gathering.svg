@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" preserveAspectRatio="xMidYMid slice" role="img">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f5640"/><stop offset="1" stop-color="#0e2419"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.2" r="0.7">
+      <stop offset="0" stop-color="#1f5640" stop-opacity="0.5"/><stop offset="1" stop-color="#1f5640" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#g)"/>
+  <rect width="1200" height="1500" fill="url(#glow)"/>
+  
+    <path d="M0 930 Q 300 750 600 900 T 1200 840.0000000000001 V 1500 H0 Z" fill="#0c2418" opacity="0.55"/>
+    <path d="M0 1080 Q 360 930 744 1050 T 1200 1020.0000000000001 V 1500 H0 Z" fill="#091c12" opacity="0.7"/><circle cx="80" cy="870" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="166" cy="877" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="252" cy="884" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="320" cy="891" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="406" cy="870" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="492" cy="877" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="560" cy="884" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="646" cy="891" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="732" cy="870" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="800" cy="877" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="886" cy="884" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="972" cy="891" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="1040" cy="870" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="1126" cy="877" r="1.5" fill="#cdd5ce" opacity="0.45"/>
+  <g fill="none" stroke="#9aa39c" stroke-width="1" opacity="0.18">
+    <circle cx="936" cy="360" r="192"/>
+  </g>
+  <text x="50%" y="744" text-anchor="middle" font-family="Georgia, serif" font-style="italic"
+        font-size="26" fill="#c4ccc5" opacity="0.85">Members at a long table</text>
+  <text x="50%" y="776" text-anchor="middle" font-family="Inter, Arial, sans-serif"
+        font-size="14" letter-spacing="3" fill="#9aa39c" opacity="0.7">HOME · THE ROOM</text>
+</svg>

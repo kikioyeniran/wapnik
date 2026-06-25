@@ -1,9 +1,132 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../../storage/framework/views/*.php";
 
+/* ------------------------------------------------------------------ *
+ * THEME — the wapnik :root tokens, mapped into Tailwind v4.
+ * These generate utilities automatically (bg-emerald, text-gold-light,
+ * font-display, …). Views use those utilities; never hardcode hex.
+ * Note: the brand "gold" is a muted sage, not yellow — kept verbatim.
+ * ------------------------------------------------------------------ */
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+  --color-emerald:       #0f3324;
+  --color-emerald-deep:  #07140d;
+  --color-emerald-mid:   #16412f;
+  --color-emerald-glow:  #1f5640;
+
+  --color-gold:          #9aa39c;
+  --color-gold-light:    #c4ccc5;
+  --color-gold-bright:   #e4e9e4;
+  --color-gold-soft:     #d6dcd6;
+
+  --color-cream:         #f6f7f5;
+  --color-cream-2:       #eceeeb;
+  --color-paper:         #ffffff;
+
+  --color-ink:           #14201a;
+  --color-ink-soft:      #4d5852;
+  --color-faint:         #8a938c;
+
+  --font-display:        "Fraunces", serif;
+  --font-sans:           "Inter", sans-serif;
+
+  /* shared editorial easing */
+  --ease-editorial:      cubic-bezier(.16, 1, .3, 1);
+}
+
+/* hairline token reused by borders/dividers in utilities via [color] */
+@theme {
+  --color-line: rgba(20, 32, 26, .14);
+}
+
+/* base — kept minimal; everything else is utilities in Blade */
+:root { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: var(--color-emerald-mid); color: var(--color-cream); }
+
+/* ================================================================== *
+ * SIGNATURE MOMENT 1 — MARQUEE
+ * The only place an infinite loop is allowed. Pauses on hover.
+ * ================================================================== */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: marquee-scroll 42s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee-scroll { to { transform: translateX(-50%); } }
+
+/* ================================================================== *
+ * SIGNATURE MOMENT 2 — HERO COMPOSITING
+ * A layered composite: graded photo + atmospheric light + grain +
+ * a single drawn guide line, with the wordmark rising from a mask.
+ * This depth is the one place authored CSS earns its keep.
+ * ================================================================== */
+.hero-grade {
+  /* one unified emerald color-grade laid over the hero photograph */
+  background:
+    linear-gradient(180deg, rgba(7,20,13,.42) 0%, rgba(7,20,13,.20) 34%, rgba(7,20,13,.78) 82%, rgba(7,20,13,.96) 100%),
+    radial-gradient(120% 80% at 78% 18%, rgba(31,86,64,.45) 0%, rgba(7,20,13,0) 55%);
+}
+.hero-grain {
+  background-image: radial-gradient(circle at 1px 1px, rgba(244,242,236,.06) 1px, transparent 0);
+  background-size: 5px 5px;
+}
+.hero-guide {
+  /* draws itself on load — no JS dependency, so it never ships blank */
+  background: linear-gradient(var(--color-gold), transparent);
+  animation: hero-draw 2.2s var(--ease-editorial) .4s both;
+}
+@keyframes hero-draw { from { height: 0; } to { height: 52%; } }
+
+.hero-word .row { display: block; overflow: hidden; }
+.hero-word .row > span {
+  display: block;
+  animation: hero-rise 1.4s var(--ease-editorial) .15s both;
+}
+@keyframes hero-rise { from { transform: translateY(108%); } to { transform: translateY(0); } }
+
+/* ================================================================== *
+ * SIGNATURE MOMENT 3 — FORM-STEP TRANSITIONS
+ * Steps swap with a soft rise; the rail dots animate their connector.
+ * ================================================================== */
+/* Without JS, every step stays visible (a usable long-form fallback).
+   With JS, only the active step shows and they animate between. */
+.js .fstep { display: none; }
+.fstep.is-active { display: block; animation: fstep-rise .9s var(--ease-editorial); }
+.done-state { display: none; }
+.done-state.is-shown { display: block; animation: fstep-rise 1s var(--ease-editorial); }
+@keyframes fstep-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ------------------------------------------------------------------ *
+ * Restrained scroll reveal — utility-driven (opacity/translate toggled
+ * by JS). Default state is visible-after-paint friendly; if JS or
+ * reduced-motion is in play, content stays put.
+ * ------------------------------------------------------------------ */
+/* hidden state applies ONLY when JS is present (html.js), so the page is
+   never blank without JS or in a headless render */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 1s var(--ease-editorial), transform 1s var(--ease-editorial);
+  will-change: opacity, transform;
+}
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* ================================================================== *
+ * REDUCED MOTION — collapse every signature moment to static.
+ * ================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; }
+  .marquee-track { animation: none !important; }
+  .hero-guide { height: 52%; }
+  .hero-word .row > span { transform: none; }
+  [data-reveal] { opacity: 1; transform: none; }
 }

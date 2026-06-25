@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAPNIK · West African Professionals Network in Kigali</title>
+<meta name="description" content="A private network of West African professionals, founders, and families in Kigali. Membership by application and invitation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --emerald:#0f3324; --emerald-deep:#07140d; --emerald-mid:#16412f; --emerald-glow:#1f5640;
+  --gold:#9aa39c; --gold-light:#c4ccc5; --gold-bright:#e4e9e4; --gold-soft:#d6dcd6;
+  --cream:#f6f7f5; --cream-2:#eceeeb; --paper:#ffffff;
+  --ink:#14201a; --ink-soft:#4d5852; --faint:#8a938c; --line:rgba(20,32,26,.14);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:300;line-height:1.05;letter-spacing:-.018em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--emerald-mid);color:var(--cream)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.label{font-size:.7rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:14px}
+.label::before{content:"";width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.label.center{justify-content:center}
+.label.center::after{content:"";width:32px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.label.light{color:var(--gold-light)}
+
+/* reveal */
+.r{opacity:0;transform:translateY(30px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.r.in{opacity:1;transform:none}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.2s}.r.d3{transition-delay:.3s}.r.d4{transition-delay:.4s}
+
+/* NAV — retained lettering */
+header{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .5s var(--ease),box-shadow .5s var(--ease)}
+header.scrolled{background:rgba(6,24,15,.92);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(154,163,156,.16)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:26px 40px}
+.nav .mk{font-family:'Fraunces',serif;font-weight:400;font-size:1.3rem;letter-spacing:.42em;color:var(--cream);padding-left:.42em}
+.nav-links{display:flex;gap:38px;align-items:center}
+.nav-links a{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,243,234,.78);transition:color .4s var(--ease);position:relative}
+.nav-links a:not(.nav-req)::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--gold-light);transition:width .4s var(--ease)}
+.nav-links a:not(.nav-req):hover::after{width:100%}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-req{color:var(--emerald-deep)!important;background:var(--gold);padding:12px 24px;border-radius:2px;font-weight:600;letter-spacing:.12em;transition:.3s var(--ease)}
+.nav-req:hover{background:var(--gold-light);transform:translateY(-2px)}
+.nav-toggle{display:none;background:none;border:none;color:var(--cream);cursor:pointer;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
+
+/* HERO — vibrant Kigali scene + big lettering */
+.hero{min-height:100vh;display:flex;align-items:flex-end;color:var(--cream);position:relative;overflow:hidden;background:var(--emerald-deep);padding-bottom:7vh}
+.hero-photo{position:absolute;inset:0;z-index:0;background-image:var(--hero-image,none);background-size:cover;background-position:center 30%;background-repeat:no-repeat}
+.hero-art{position:absolute;inset:0;z-index:0}
+.hero-art svg{width:100%;height:100%;object-fit:cover}
+.hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,20,13,.55) 0%,rgba(7,20,13,.32) 38%,rgba(7,20,13,.78) 82%,rgba(7,20,13,.92) 100%)}
+.hero-grain{position:absolute;inset:0;z-index:2;opacity:.4;background-image:radial-gradient(circle at 1px 1px,rgba(244,242,236,.06) 1px,transparent 0);background-size:5px 5px}
+.hero-line{position:absolute;top:0;left:50%;width:1px;height:0;background:linear-gradient(var(--gold),transparent);z-index:2;transition:height 2.4s var(--ease) .6s}
+.hero.lit .hero-line{height:55%}
+.hero-inner{position:relative;z-index:3;width:100%}
+.hero h1{font-size:clamp(3.4rem,12vw,11rem);font-weight:300;letter-spacing:-.03em;line-height:.9;margin-bottom:34px}
+.hero h1 .a{display:block;overflow:hidden}
+.hero h1 .a span{display:block;transform:translateY(110%);transition:transform 1.5s var(--ease) .25s}
+.hero.lit h1 .a span{transform:translateY(0)}
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.hero-pos{max-width:440px}
+.hero-pos .label{margin-bottom:18px}
+.hero-pos p{font-size:1.12rem;font-weight:300;color:rgba(247,243,234,.82);line-height:1.55}
+.hero-pos p em{font-style:italic;color:var(--gold-light)}
+.hero-cue{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.req-link{display:inline-flex;align-items:center;gap:16px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--emerald-deep);background:var(--gold);padding:18px 34px;border-radius:2px;font-weight:600;transition:.3s var(--ease);box-shadow:0 16px 40px -14px rgba(154,163,156,.6)}
+.req-link:hover{background:var(--gold-light);transform:translateY(-2px)}
+.req-link .ln{width:34px;height:1px;background:currentColor;transition:width .4s var(--ease)}
+.req-link:hover .ln{width:50px}
+.hero-meta{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,243,234,.5)}
+
+/* MARQUEE */
+.marquee{background:var(--emerald-deep);border-top:1px solid rgba(154,163,156,.18);border-bottom:1px solid rgba(154,163,156,.18);overflow:hidden;padding:20px 0}
+.mtrack{display:flex;gap:64px;white-space:nowrap;animation:scroll 36s linear infinite;width:max-content}
+.marquee:hover .mtrack{animation-play-state:paused}
+.mtrack span{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1.15rem;color:var(--gold-light);display:inline-flex;align-items:center;gap:64px}
+.mtrack span::after{content:"·";color:rgba(154,163,156,.45);font-style:normal}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+section{padding:13vh 0;position:relative}
+.head{max-width:720px;margin-bottom:8vh}
+.head.center{margin-left:auto;margin-right:auto;text-align:center}
+.head .label{margin-bottom:26px}
+.head h2{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:18px;color:var(--ink);font-weight:300}
+.head p{font-size:1.1rem;color:var(--ink-soft);font-weight:300}
+
+/* ETHOS — manifesto, retained verbatim */
+.ethos{background:var(--paper)}
+.ethos .label{display:block;text-align:center;margin-bottom:10vh}
+.manifesto{max-width:1000px;margin:0 auto}
+.manifesto p{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(1.7rem,4vw,3rem);line-height:1.24;letter-spacing:-.02em;color:var(--ink);margin-bottom:7vh;max-width:16ch}
+.manifesto p:nth-child(even){margin-left:auto;text-align:right;max-width:18ch}
+.manifesto p em{font-style:italic;color:var(--gold)}
+.manifesto p .sm{display:block;font-family:'Inter',sans-serif;font-size:.98rem;font-weight:400;letter-spacing:0;color:var(--ink-soft);max-width:44ch;line-height:1.6;margin-top:22px}
+.manifesto p:nth-child(even) .sm{margin-left:auto}
+
+/* WHO WE ARE with image */
+.who{background:var(--cream)}
+.who-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center}
+.who-copy h2{font-size:clamp(2.1rem,4vw,3rem);margin:18px 0 24px;font-weight:300}
+.who-copy .lead{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1.3rem;line-height:1.45;color:var(--ink);margin-bottom:22px}
+.who-copy p{color:var(--ink-soft);margin-bottom:16px;font-size:1.02rem;font-weight:300}
+.who-sign{margin-top:30px}
+.who-sign .sig{font-family:'Fraunces',serif;font-style:italic;font-size:1.4rem;color:var(--emerald)}
+.who-sign .role{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:4px}
+.who-visual{position:relative}
+.who-visual .frame{overflow:hidden;border-radius:4px;box-shadow:0 50px 90px -40px rgba(12,42,31,.5)}
+.who-visual .frame svg{width:100%;display:block}
+.who-badge{position:absolute;bottom:-30px;left:-26px;background:var(--emerald);color:var(--cream);padding:26px 30px;border-radius:4px;box-shadow:0 30px 60px -24px rgba(0,0,0,.5);border-top:2px solid var(--gold)}
+.who-badge .n{font-family:'Fraunces',serif;font-weight:300;font-size:2.2rem;color:var(--gold-light);line-height:1}
+.who-badge .l{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,243,234,.7);margin-top:6px}
+
+/* BELONGING */
+.belong{background:var(--cream-2)}
+.belong-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:start}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:42px;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.card:hover{transform:translateY(-5px);box-shadow:0 36px 70px -34px rgba(12,42,31,.34)}
+.card h3{font-size:1.5rem;margin-bottom:24px;color:var(--emerald);font-weight:300}
+.list{list-style:none;display:flex;flex-direction:column;gap:15px}
+.list li{display:flex;gap:14px;align-items:flex-start;font-size:.98rem;font-weight:300}
+.tick{flex:none;width:22px;height:22px;border-radius:50%;background:var(--emerald);color:var(--gold-light);display:grid;place-items:center;font-size:.66rem;margin-top:3px}
+.card.not{background:var(--emerald);color:var(--cream);border-color:rgba(154,163,156,.24)}
+.card.not h3{color:var(--gold-light)}.card.not .list li{color:rgba(247,243,234,.86)}
+.cross{flex:none;width:22px;height:22px;border-radius:50%;background:rgba(180,69,47,.25);color:#ec9a85;display:grid;place-items:center;font-size:.66rem;margin-top:3px}
+
+/* PILLARS / membership privileges with imagery */
+.pillars{background:var(--emerald);color:var(--cream)}
+.pillars .head h2{color:var(--cream)}.pillars .head p{color:rgba(247,243,234,.74)}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.pcard{position:relative;border-radius:4px;overflow:hidden;border:1px solid rgba(154,163,156,.2);transition:transform .5s var(--ease),border-color .4s}
+.pcard:hover{transform:translateY(-6px);border-color:rgba(154,163,156,.55)}
+.pcard .pimg{height:170px;overflow:hidden}
+.pcard .pimg svg{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.pcard:hover .pimg svg{transform:scale(1.06)}
+.pcard .pbody{padding:26px;background:rgba(247,243,234,.03)}
+.pcard .pn{font-family:'Fraunces',serif;font-size:.8rem;color:var(--gold);letter-spacing:.1em;margin-bottom:12px}
+.pcard h3{font-size:1.3rem;color:var(--cream);font-weight:300;margin-bottom:10px}
+.pcard p{font-size:.92rem;color:rgba(247,243,234,.68);font-weight:300}
+
+/* EVENTS — interactive filter */
+.events{background:var(--cream)}
+.ev-filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6vh}
+.ev-filter button{background:transparent;border:1px solid var(--line);color:var(--ink-soft);padding:10px 22px;border-radius:30px;font-family:'Inter',sans-serif;font-size:.8rem;letter-spacing:.04em;font-weight:500;cursor:pointer;transition:.3s var(--ease)}
+.ev-filter button:hover{border-color:var(--gold);color:var(--emerald)}
+.ev-filter button.active{background:var(--emerald);border-color:var(--emerald);color:var(--gold-light);font-weight:600}
+.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.ev-card{background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease);cursor:pointer}
+.ev-card:hover{transform:translateY(-8px);box-shadow:0 40px 70px -36px rgba(12,42,31,.36)}
+.ev-media{height:190px;position:relative;overflow:hidden}
+.ev-media svg{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.ev-card:hover .ev-media svg{transform:scale(1.07)}
+.ev-tag{position:absolute;top:16px;left:16px;background:rgba(6,24,15,.82);backdrop-filter:blur(4px);color:var(--gold-light);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:7px 13px;border-radius:20px;border:1px solid rgba(154,163,156,.4)}
+.ev-body{padding:28px}
+.ev-body .when{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:11px}
+.ev-body h3{font-size:1.35rem;color:var(--emerald);font-weight:400;margin-bottom:10px}
+.ev-body p{font-size:.92rem;color:var(--ink-soft);font-weight:300}
+.ev-foot{display:flex;align-items:center;gap:8px;margin-top:18px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.ev-foot .arr{transition:transform .3s var(--ease)}.ev-card:hover .ev-foot .arr{transform:translateX(5px)}
+
+/* RHYTHM */
+.rhythm{background:var(--cream-2)}
+.rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.rh{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:34px;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.rh:hover{transform:translateY(-5px);box-shadow:0 30px 60px -32px rgba(12,42,31,.3)}
+.rh .cadence{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px}
+.rh ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.rh li{font-family:'Fraunces',serif;font-weight:300;font-size:1.1rem;color:var(--emerald);display:flex;align-items:center;gap:11px}
+.rh li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);flex:none}
+.rh.signature{background:var(--emerald);border-color:rgba(154,163,156,.3)}
+.rh.signature .cadence{color:var(--gold-light)}
+.rh.signature .gala{font-family:'Fraunces',serif;font-weight:300;font-size:1.6rem;color:var(--cream);line-height:1.2;margin-top:4px}
+.rh.signature p{font-size:.86rem;color:rgba(247,243,234,.7);font-weight:300;margin-top:10px}
+
+/* PROCESS */
+.process{background:var(--emerald-deep);color:var(--cream)}
+.process .head h2{color:var(--cream)}.process .head p{color:rgba(247,243,234,.74)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr)}
+.step{padding:0 28px;position:relative}
+.step:not(:last-child)::after{content:"";position:absolute;top:28px;right:0;width:1px;height:64%;background:linear-gradient(rgba(154,163,156,.4),transparent)}
+.step .num{font-family:'Fraunces',serif;font-weight:300;font-size:1rem;color:var(--gold);border:1px solid var(--gold);width:56px;height:56px;border-radius:50%;display:grid;place-items:center;margin-bottom:26px;transition:.4s var(--ease)}
+.step:hover .num{background:var(--gold);color:var(--emerald-deep)}
+.step h3{font-size:1.2rem;margin-bottom:13px;color:var(--gold-light);font-weight:400}
+.step p{font-size:.92rem;color:rgba(247,243,234,.78);font-weight:300}
+.pnote{margin-top:8vh;padding:28px 34px;border:1px solid rgba(154,163,156,.32);border-radius:6px;background:rgba(154,163,156,.05);font-size:1.05rem;color:var(--gold-soft);max-width:800px;font-weight:300}
+.pnote strong{color:var(--gold-light);font-weight:500}
+
+/* VALUES */
+.values{background:var(--cream)}
+.vgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:30px}
+.value{padding-top:26px;border-top:2px solid var(--gold);transition:border-color .4s}
+.value:hover{border-color:var(--emerald)}
+.value h4{font-size:1.12rem;color:var(--emerald);margin-bottom:10px;font-weight:400}
+.value p{font-size:.88rem;color:var(--ink-soft);font-weight:300}
+
+/* FAQ */
+.faq{background:var(--cream-2)}
+.faq-list{max-width:880px;margin:0 auto}
+.q{border-bottom:1px solid var(--line)}
+.q summary{cursor:pointer;list-style:none;padding:30px 0;display:flex;justify-content:space-between;align-items:center;gap:22px;font-family:'Fraunces',serif;font-size:1.28rem;font-weight:400;color:var(--emerald);transition:color .3s}
+.q summary:hover{color:var(--gold)}
+.q summary::-webkit-details-marker{display:none}
+.q summary .plus{flex:none;width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);transition:.3s var(--ease)}
+.q[open] summary .plus{transform:rotate(45deg);background:var(--gold);color:var(--paper)}
+.q .a{padding:0 0 30px;color:var(--ink-soft);font-size:1rem;max-width:720px;font-weight:300}
+
+/* APPLY — "being considered" form, retained */
+.apply{background:linear-gradient(180deg,var(--emerald-deep),var(--emerald));color:var(--cream);position:relative;overflow:hidden}
+.apply-art{position:absolute;inset:0;opacity:.14;z-index:0}
+.apply-art svg{width:100%;height:100%;object-fit:cover}
+.apply .wrap{position:relative;z-index:2}
+.apply-head{text-align:center;max-width:720px;margin:0 auto 8vh}
+.apply-head .label{color:var(--gold-light);justify-content:center;margin-bottom:30px}
+.apply-head .label::before{background:linear-gradient(90deg,transparent,var(--gold-light))}
+.apply-head h2{font-size:clamp(2.4rem,6vw,4.4rem);color:var(--cream);font-weight:300;margin-bottom:26px}
+.apply-head p{font-size:1.05rem;font-weight:300;color:rgba(247,243,234,.62);max-width:48ch;margin:0 auto}
+.form-wrap{max-width:720px;margin:0 auto}
+.form-rail{display:flex;justify-content:center;gap:14px;margin-bottom:7vh;flex-wrap:wrap}
+.rail-dot{display:flex;align-items:center;gap:14px;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);transition:color .5s var(--ease)}
+.rail-dot .rl{width:30px;height:1px;background:rgba(247,243,234,.2);transition:background .5s var(--ease)}
+.rail-dot.on{color:var(--cream)}.rail-dot.on .rl{background:var(--gold)}
+.rail-dot.done{color:rgba(247,243,234,.45)}.rail-dot.done .rl{background:rgba(247,243,234,.4)}
+.fstep{display:none}.fstep.on{display:block;animation:rise 1s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.fstep .q-label{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-light);margin-bottom:36px;display:block;text-align:center}
+.fstep h3{font-size:clamp(1.8rem,4vw,2.7rem);text-align:center;color:var(--cream);font-weight:300;margin-bottom:12px}
+.fstep .sub{text-align:center;color:rgba(247,243,234,.55);font-weight:300;margin-bottom:54px;max-width:44ch;margin-left:auto;margin-right:auto}
+.fld{margin-bottom:38px}
+.fld label{display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,243,234,.55);margin-bottom:16px}
+.fld label .opt{color:var(--faint);letter-spacing:.1em}
+.fld input,.fld select,.fld textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(247,243,234,.22);color:var(--cream);font-family:'Inter',sans-serif;font-size:1.1rem;font-weight:300;padding:12px 0;transition:border-color .5s var(--ease)}
+.fld input::placeholder,.fld textarea::placeholder{color:rgba(247,243,234,.28)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--gold)}
+.fld select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aa39c' fill='none' stroke-width='1.2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center}
+.fld select option{background:var(--emerald-deep);color:var(--cream)}
+.fld textarea{resize:none;min-height:60px;line-height:1.6}
+.fld .micro{font-size:.78rem;color:var(--faint);font-weight:300;margin-top:14px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.upload-q{border:1px solid rgba(247,243,234,.22);border-radius:4px;padding:34px;text-align:center;cursor:pointer;transition:border-color .5s var(--ease)}
+.upload-q:hover{border-color:var(--gold)}
+.upload-q .ul{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,243,234,.7)}
+.upload-q .us{display:block;font-size:.74rem;color:var(--faint);font-weight:300;margin-top:12px}
+.upload-q input{display:none}
+.upload-q .uf{margin-top:16px;font-size:.82rem;color:var(--gold-light);letter-spacing:.04em}
+.consent{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;cursor:pointer}
+.consent input{flex:none;width:16px;height:16px;margin-top:5px;accent-color:var(--gold)}
+.consent span{font-size:.86rem;font-weight:300;color:rgba(247,243,234,.6);line-height:1.55}
+.form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:60px;border-top:1px solid rgba(247,243,234,.12);padding-top:36px}
+.back{background:none;border:none;color:var(--faint);cursor:pointer;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;transition:color .4s var(--ease)}
+.back:hover{color:var(--cream)}
+.fwd{cursor:pointer;display:inline-flex;align-items:center;gap:18px;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;border:none;border-radius:2px;transition:.3s var(--ease)}
+.fwd.ghost{background:none;color:var(--cream);padding-bottom:8px;border-bottom:1px solid rgba(247,243,234,.3)}
+.fwd.ghost:hover{border-color:var(--cream)}
+.fwd.ghost .ln{width:38px;height:1px;background:currentColor;transition:width .4s var(--ease)}
+.fwd.ghost:hover .ln{width:60px}
+.fwd.solid{background:var(--gold);color:var(--emerald-deep);padding:16px 32px;box-shadow:0 16px 40px -16px rgba(154,163,156,.6)}
+.fwd.solid:hover{background:var(--gold-light);transform:translateY(-2px)}
+.done-state{display:none;text-align:center;padding:5vh 0}
+.done-state.show{display:block;animation:rise 1.1s var(--ease)}
+.done-state .mark{width:74px;height:74px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:1.8rem;margin:0 auto 40px}
+.done-state h3{font-size:clamp(2rem,5vw,3.2rem);color:var(--cream);font-weight:300;margin-bottom:24px}
+.done-state p{color:rgba(247,243,234,.6);font-weight:300;max-width:46ch;margin:0 auto 14px;font-size:1.05rem}
+.done-state .fine{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);margin-top:30px}
+
+/* CLOSE */
+footer{background:var(--emerald-deep);color:var(--cream);padding:70px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:44px;padding-bottom:52px}
+.foot-brand .mk{font-family:'Fraunces',serif;font-size:1.5rem;letter-spacing:.4em;color:var(--cream);padding-left:.4em}
+.foot-brand .tag{color:var(--gold-light);font-family:'Fraunces',serif;font-style:italic;font-weight:300;margin:14px 0 18px;font-size:1.1rem}
+.foot-brand p{color:rgba(247,243,234,.64);max-width:330px;font-size:.94rem;font-weight:300}
+.foot-col h4{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-family:'Inter',sans-serif;font-weight:600}
+.foot-col a,.foot-col p{display:block;color:rgba(247,243,234,.72);font-size:.92rem;margin-bottom:12px;font-weight:300;transition:color .3s}
+.foot-col a:hover{color:var(--gold-light)}
+.foot-bottom{border-top:1px solid rgba(154,163,156,.18);padding:26px 0;text-align:center}
+.foot-bottom .tagline{font-family:'Fraunces',serif;font-style:italic;font-weight:300;letter-spacing:.06em;font-size:1rem;color:var(--gold);margin-bottom:8px}
+.foot-bottom .copy{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,243,234,.4)}
+
+@media(max-width:980px){
+  .wrap{padding:0 26px}.nav{padding:22px 26px}
+  .nav-links{display:none}.nav-toggle{display:block}
+  .who-grid{grid-template-columns:1fr;gap:60px}.who-badge{left:0}
+  .belong-grid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .ev-grid{grid-template-columns:1fr 1fr}
+  .rgrid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr;gap:40px}.step::after{display:none}
+  .vgrid{grid-template-columns:1fr 1fr 1fr}
+  .duo{grid-template-columns:1fr;gap:0}
+  .foot-grid{grid-template-columns:1fr}
+  .manifesto p,.manifesto p:nth-child(even){max-width:none;text-align:left;margin-left:0}
+  .hero-row{flex-direction:column;align-items:flex-start;gap:32px}
+}
+@media(max-width:560px){
+  .pgrid,.ev-grid,.rgrid,.vgrid,.steps{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.001s!important;scroll-behavior:auto}
+  .r{opacity:1;transform:none}.hero h1 .a span{transform:none}.hero .hero-line{height:55%}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="nav">
+    <a href="#top" class="mk">WAPNIK</a>
+    <nav class="nav-links">
+      <a href="#ethos">Ethos</a>
+      <a href="#who">Who we are</a>
+      <a href="#events">Events</a>
+      <a href="#process">How to join</a>
+      <a href="#faq">FAQ</a>
+      <a href="#apply" class="nav-req">Request an invitation</a>
+    </nav>
+    <button class="nav-toggle" onclick="document.getElementById('apply').scrollIntoView()">Apply</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <!-- ===================================================================
+       HERO BACKGROUND IMAGE
+       To use a real photo: set --hero-image below to your image URL, e.g.
+         style="--hero-image:url('images/kigali-night.jpg')"
+       A wide Kigali skyline / convention-centre at dusk or night works best
+       (landscape, min 2000px wide). The illustrated scene shows until then.
+  ==================================================================== -->
+  <div class="hero-photo" style="--hero-image:none"></div>
+  <div class="hero-art">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2b4a3a"/><stop offset="0.32" stop-color="#1a3527"/>
+          <stop offset="0.62" stop-color="#0e2419"/><stop offset="1" stop-color="#07140d"/>
+        </linearGradient>
+        <radialGradient id="moon" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#e9ede9" stop-opacity="0.6"/><stop offset="0.5" stop-color="#cfd6cf" stop-opacity="0.18"/><stop offset="1" stop-color="#cfd6cf" stop-opacity="0"/></radialGradient>
+        <radialGradient id="cityglow" cx="0.5" cy="1" r="0.7"><stop offset="0" stop-color="#3a5f49" stop-opacity="0.55"/><stop offset="1" stop-color="#3a5f49" stop-opacity="0"/></radialGradient>
+        <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a3527" stop-opacity="0"/><stop offset="1" stop-color="#0a1f15" stop-opacity="0.85"/></linearGradient>
+      </defs>
+      <rect width="1440" height="900" fill="url(#sky)"/>
+      <!-- moon low in the sky -->
+      <circle cx="1180" cy="220" r="300" fill="url(#moon)"/>
+      <circle cx="1180" cy="220" r="52" fill="#eef1ee" opacity="0.92"/>
+      <circle cx="1180" cy="220" r="52" fill="none" stroke="#eef1ee" stroke-width="1" opacity="0.3"/>
+      <!-- ambient city glow rising from below -->
+      <rect x="0" y="430" width="1440" height="470" fill="url(#cityglow)"/>
+      <!-- layered Kigali ridgelines (the city of a thousand hills) -->
+      <path d="M0 470 Q280 400 560 450 T1080 430 T1440 450 V900 H0 Z" fill="#16382680" />
+      <path d="M0 520 Q360 450 760 500 T1440 490 V900 H0 Z" fill="#11301f"/>
+      <path d="M0 580 Q300 520 640 565 T1440 555 V900 H0 Z" fill="#0c2418"/>
+      <!-- distant hillside lights (scatter) -->
+      <g fill="#cdd5ce">
+        <circle cx="120" cy="486" r="1.4" opacity="0.5"/><circle cx="180" cy="498" r="1.4" opacity="0.6"/><circle cx="250" cy="476" r="1.4" opacity="0.45"/><circle cx="330" cy="492" r="1.4" opacity="0.6"/><circle cx="410" cy="470" r="1.4" opacity="0.5"/><circle cx="480" cy="500" r="1.4" opacity="0.55"/><circle cx="560" cy="486" r="1.4" opacity="0.5"/><circle cx="640" cy="508" r="1.4" opacity="0.45"/><circle cx="720" cy="478" r="1.4" opacity="0.6"/><circle cx="800" cy="502" r="1.4" opacity="0.5"/><circle cx="880" cy="488" r="1.4" opacity="0.55"/><circle cx="960" cy="472" r="1.4" opacity="0.5"/><circle cx="1040" cy="498" r="1.4" opacity="0.6"/><circle cx="1120" cy="484" r="1.4" opacity="0.45"/><circle cx="1240" cy="500" r="1.4" opacity="0.5"/><circle cx="1320" cy="478" r="1.4" opacity="0.55"/>
+        <circle cx="150" cy="540" r="1.6" opacity="0.55"/><circle cx="230" cy="552" r="1.6" opacity="0.5"/><circle cx="300" cy="534" r="1.6" opacity="0.6"/><circle cx="380" cy="556" r="1.6" opacity="0.45"/><circle cx="470" cy="540" r="1.6" opacity="0.55"/><circle cx="690" cy="548" r="1.6" opacity="0.5"/><circle cx="780" cy="538" r="1.6" opacity="0.6"/><circle cx="980" cy="552" r="1.6" opacity="0.5"/><circle cx="1100" cy="540" r="1.6" opacity="0.55"/><circle cx="1280" cy="548" r="1.6" opacity="0.5"/>
+      </g>
+      <!-- foreground skyline silhouette -->
+      <g fill="#081a11">
+        <rect x="90" y="470" width="46" height="200"/><rect x="146" y="516" width="34" height="154"/>
+        <rect x="196" y="440" width="54" height="230"/><rect x="262" y="500" width="38" height="170"/>
+        <rect x="312" y="486" width="30" height="184"/>
+        <rect x="860" y="494" width="40" height="176"/><rect x="908" y="456" width="48" height="214"/>
+        <rect x="964" y="510" width="32" height="160"/><rect x="1006" y="478" width="50" height="192"/>
+        <rect x="1066" y="520" width="34" height="150"/><rect x="1108" y="496" width="42" height="174"/>
+      </g>
+      <!-- lit windows on the towers -->
+      <g fill="#d2dad3">
+        <rect x="100" y="486" width="5" height="8" opacity="0.85"/><rect x="116" y="486" width="5" height="8" opacity="0.6"/><rect x="100" y="506" width="5" height="8" opacity="0.7"/><rect x="116" y="526" width="5" height="8" opacity="0.8"/><rect x="100" y="546" width="5" height="8" opacity="0.55"/>
+        <rect x="206" y="456" width="5" height="8" opacity="0.85"/><rect x="222" y="456" width="5" height="8" opacity="0.6"/><rect x="238" y="476" width="5" height="8" opacity="0.8"/><rect x="206" y="496" width="5" height="8" opacity="0.7"/><rect x="222" y="516" width="5" height="8" opacity="0.85"/><rect x="238" y="536" width="5" height="8" opacity="0.6"/>
+        <rect x="918" y="472" width="5" height="8" opacity="0.85"/><rect x="934" y="472" width="5" height="8" opacity="0.6"/><rect x="918" y="492" width="5" height="8" opacity="0.75"/><rect x="934" y="512" width="5" height="8" opacity="0.8"/><rect x="918" y="532" width="5" height="8" opacity="0.6"/>
+        <rect x="1016" y="494" width="5" height="8" opacity="0.8"/><rect x="1032" y="494" width="5" height="8" opacity="0.6"/><rect x="1016" y="514" width="5" height="8" opacity="0.75"/><rect x="1032" y="534" width="5" height="8" opacity="0.85"/>
+      </g>
+      <!-- Kigali Convention Centre dome -->
+      <g transform="translate(622,556)">
+        <ellipse cx="84" cy="108" rx="132" ry="20" fill="#06140d"/>
+        <path d="M-4 108 Q84 -16 172 108 Z" fill="#0a1f15"/>
+        <path d="M0 108 Q84 -12 168 108" fill="none" stroke="#3a5f49" stroke-width="3"/>
+        <path d="M16 108 Q84 6 152 108" fill="none" stroke="#aab3ac" stroke-width="2" opacity="0.7"/>
+        <path d="M34 108 Q84 26 134 108" fill="none" stroke="#cdd5ce" stroke-width="1.6" opacity="0.55"/>
+        <path d="M52 108 Q84 48 116 108" fill="none" stroke="#aab3ac" stroke-width="1.4" opacity="0.4"/>
+      </g>
+      <!-- atmospheric haze at the base -->
+      <rect x="0" y="440" width="1440" height="460" fill="url(#haze)"/>
+    </svg>
+  </div>
+  <div class="hero-veil"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-line"></div>
+  <div class="wrap hero-inner">
+    <h1><span class="a"><span>WAPNIK</span></span></h1>
+    <div class="hero-row">
+      <div class="hero-pos r d2">
+        <span class="label light">West African Professionals · Kigali</span>
+        <p>For West Africans who chose Kigali. A private network for building, leading, and <em>belonging</em>.</p>
+      </div>
+      <div class="hero-cue r d3">
+        <a href="#apply" class="req-link">Request an invitation <span class="ln"></span></a>
+        <span class="hero-meta">By application &amp; invitation only</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="mtrack">
+    <span>Networking dinners</span><span>Founder roundtables</span><span>Family picnics</span><span>Cultural celebrations</span><span>The WAPNIK Gala</span><span>Coffee &amp; conversation</span>
+    <span>Networking dinners</span><span>Founder roundtables</span><span>Family picnics</span><span>Cultural celebrations</span><span>The WAPNIK Gala</span><span>Coffee &amp; conversation</span>
+  </div>
+</div>
+
+<!-- ETHOS — manifesto retained verbatim -->
+<section class="ethos" id="ethos">
+  <div class="wrap">
+    <span class="label">Our ethos</span>
+    <div class="manifesto">
+      <p class="r">A city can be full of people and still feel far from home.</p>
+      <p class="r">So we built a <em>network</em>, where you are already understood.<span class="sm">Where the introductions are warm, the table is generous, and the person across from you genuinely wants you to win.</span></p>
+      <p class="r">We are careful about who we admit.<span class="sm">Not to keep people out. Because the quality of the room is the whole of what we offer.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section class="who" id="who">
+  <div class="wrap who-grid">
+    <div class="who-copy r">
+      <span class="label">Who we are</span>
+      <h2>A network, not a group chat.</h2>
+      <p class="lead">West Africans who chose Kigali.</p>
+      <p>Founders, doctors, diplomats, engineers, and the families beside them. We weren't short on contacts. We were short on a room where someone wants you to win.</p>
+      <p>So we built one. And we're careful who we let in.</p>
+      <div class="who-sign">
+        <div class="sig">The Founders</div>
+        <div class="role">WAPNIK</div>
+      </div>
+    </div>
+    <div class="who-visual r d2">
+      <div class="frame">
+        <svg viewBox="0 0 600 580" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="wbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#13402f"/><stop offset="1" stop-color="#06180f"/></linearGradient>
+            <radialGradient id="warm" cx="0.5" cy="0.32" r="0.7"><stop offset="0" stop-color="#9aa39c" stop-opacity="0.32"/><stop offset="1" stop-color="#9aa39c" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect width="600" height="580" fill="url(#wbg)"/><rect width="600" height="580" fill="url(#warm)"/>
+          <ellipse cx="300" cy="448" rx="248" ry="62" fill="#0a2418"/>
+          <ellipse cx="300" cy="442" rx="238" ry="56" fill="#102e22" stroke="#9aa39c" stroke-width="1" opacity="0.9"/>
+          <ellipse cx="300" cy="414" rx="72" ry="22" fill="#c4ccc5" opacity="0.2"/>
+          <g fill="#e4e9e4"><rect x="296" y="384" width="8" height="30" rx="2"/><ellipse cx="300" cy="380" rx="5" ry="10" opacity="0.95"/></g>
+          <g fill="#0a2418" stroke="#9aa39c" stroke-width="1.2">
+            <g transform="translate(150,312)"><circle cx="0" cy="0" r="27"/><path d="M-35 72 Q0 30 35 72 Z"/></g>
+            <g transform="translate(232,270)"><circle cx="0" cy="0" r="25"/><path d="M-33 66 Q0 28 33 66 Z"/></g>
+            <g transform="translate(368,270)"><circle cx="0" cy="0" r="25"/><path d="M-33 66 Q0 28 33 66 Z"/></g>
+            <g transform="translate(450,312)"><circle cx="0" cy="0" r="27"/><path d="M-35 72 Q0 30 35 72 Z"/></g>
+            <g transform="translate(300,244)"><circle cx="0" cy="0" r="29"/><path d="M-37 78 Q0 30 37 78 Z"/></g>
+          </g>
+          <g stroke="#c4ccc5" stroke-width="2" fill="none" opacity="0.85"><path d="M186 308 l8 -20"/><path d="M414 308 l-8 -20"/></g>
+          <circle cx="194" cy="286" r="4" fill="#c4ccc5"/><circle cx="406" cy="286" r="4" fill="#c4ccc5"/>
+        </svg>
+      </div>
+      <div class="who-badge"><div class="n">15+</div><div class="l">West African nations,<br>one table</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BELONGING -->
+<section class="belong" id="belong">
+  <div class="wrap">
+    <div class="head r">
+      <span class="label">Who belongs here</span>
+      <h2>Built for professionals.</h2>
+      <p>Find yourself on this list and you'll feel at home in the room.</p>
+    </div>
+    <div class="belong-grid">
+      <div class="card r">
+        <h3>This is your room if you're a…</h3>
+        <ul class="list">
+          <li><span class="tick">&#10003;</span> Corporate professional or senior manager</li>
+          <li><span class="tick">&#10003;</span> Founder, entrepreneur, or business owner</li>
+          <li><span class="tick">&#10003;</span> Executive or established consultant</li>
+          <li><span class="tick">&#10003;</span> Development sector, NGO, or international-org professional</li>
+          <li><span class="tick">&#10003;</span> Diplomat or foreign-mission staff</li>
+          <li><span class="tick">&#10003;</span> Remote worker or digital professional</li>
+          <li><span class="tick">&#10003;</span> Couple or family putting down roots in Kigali</li>
+        </ul>
+      </div>
+      <div class="card not r d2">
+        <h3>It's honestly not for…</h3>
+        <ul class="list">
+          <li><span class="cross">&#10007;</span> Students (we'll cheer you on elsewhere)</li>
+          <li><span class="cross">&#10007;</span> Anyone seeking financial assistance</li>
+          <li><span class="cross">&#10007;</span> Pure transactional networking</li>
+          <li><span class="cross">&#10007;</span> Mass advertising or unsolicited selling</li>
+        </ul>
+        <p style="margin-top:26px;font-size:.92rem;font-weight:300;color:rgba(247,243,234,.72)">We say no often. That's why a yes means something.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP PRIVILEGES with imagery -->
+<section class="pillars" id="pillars">
+  <div class="wrap">
+    <div class="head r">
+      <span class="label light">What membership means</span>
+      <h2>Four things every member walks away with.</h2>
+      <p>Not a group to join. People in your corner.</p>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="events">
+  <div class="wrap">
+    <div class="head r">
+      <span class="label">Events &amp; experiences</span>
+      <h2>Where friendships are made.</h2>
+      <p>From quiet coffees to the black-tie Gala. Filter by the room you want.</p>
+    </div>
+    <div class="ev-filter r d1" id="evFilter">
+      <button class="active" data-f="all">Everything</button>
+      <button data-f="network">Networking</button>
+      <button data-f="growth">Professional</button>
+      <button data-f="family">Family &amp; culture</button>
+      <button data-f="signature">Signature</button>
+    </div>
+    <div class="ev-grid r d2" id="evGrid"></div>
+  </div>
+</section>
+
+<!-- RHYTHM -->
+<section class="rhythm" id="rhythm">
+  <div class="wrap">
+    <div class="head r">
+      <span class="label">Our annual rhythm</span>
+      <h2>Show up as life allows.</h2>
+      <p>Always something on. No pressure. A standing invitation.</p>
+    </div>
+    <div class="rgrid">
+      <div class="rh r"><div class="cadence">Every month</div><ul><li>Networking dinner</li><li>Coffee meetup</li></ul></div>
+      <div class="rh r d1"><div class="cadence">Every quarter</div><ul><li>Founder roundtable</li><li>Professional development</li></ul></div>
+      <div class="rh r d2"><div class="cadence">Twice a year</div><ul><li>Family picnic</li><li>Cultural celebration</li></ul></div>
+      <div class="rh signature r d3"><div class="cadence">Once a year</div><div class="gala">The WAPNIK Gala</div><p>Our black-tie evening. The night everyone clears their calendar for.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="head r">
+      <span class="label light">How to join</span>
+      <h2>Four steps. No shortcuts.</h2>
+      <p>Screening is why the room feels the way it does. Here's what happens after you submit.</p>
+    </div>
+    <div class="steps">
+      <div class="step r"><div class="num">01</div><h3>You apply</h3><p>Who you are, where you work, why WAPNIK. Your CV helps us know you.</p></div>
+      <div class="step r d1"><div class="num">02</div><h3>We consider</h3><p>The committee reviews your background, credibility, and fit.</p></div>
+      <div class="step r d2"><div class="num">03</div><h3>A short conversation</h3><p>A likely fit earns a brief interview. A conversation, not an interrogation.</p></div>
+      <div class="step r d3"><div class="num">04</div><h3>The decision</h3><p>The committee decides together. A yes brings your first invitation.</p></div>
+    </div>
+    <div class="pnote r"><strong>Why so selective?</strong> A network is only as good as its people. We're honest about fit, for your sake as much as ours.</div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="wrap">
+    <div class="head r"><span class="label">What we stand on</span><h2>Five values every member signs up to.</h2></div>
+    <div class="vgrid">
+      <div class="value r"><h4>Community</h4><p>A place to belong, where everyone is genuinely known.</p></div>
+      <div class="value r d1"><h4>Excellence</h4><p>High standards in character and conduct, always.</p></div>
+      <div class="value r d2"><h4>Integrity</h4><p>Trust built on honesty, respect, and accountability.</p></div>
+      <div class="value r d3"><h4>Culture</h4><p>The richness and diversity of West Africa, celebrated.</p></div>
+      <div class="value r d4"><h4>Collaboration</h4><p>Together we go further. We mean it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="head center r"><span class="label center">Before you apply</span><h2>The questions everyone asks first.</h2></div>
+    <div class="faq-list r d1">
+      <details class="q"><summary>Is there a membership fee?<span class="plus">+</span></summary><div class="a">Applying is free. Any contribution covers events and runs the network, and we're transparent about it before you commit. WAPNIK isn't for anyone seeking financial assistance, and it isn't a money-making scheme.</div></details>
+      <details class="q"><summary>I just moved to Kigali. Is it too soon?<span class="plus">+</span></summary><div class="a">Not at all. We ask how long you've been here to know your story, not to disqualify you. New arrivals are often exactly who we want. Settling in is easier with people around you.</div></details>
+      <details class="q"><summary>Do I need a referral?<span class="plus">+</span></summary><div class="a">It helps, but it isn't required. Without one, your application tells us more of your story. Strong applications stand on their own.</div></details>
+      <details class="q"><summary>Why do you ask for my CV and education?<span class="plus">+</span></summary><div class="a">Because consideration is genuine, not symbolic. They help the committee see your credibility and what you'll add. Confidential to the committee.</div></details>
+      <details class="q"><summary>How long until I hear back?<span class="plus">+</span></summary><div class="a">We review on a rolling basis. You'll hear from us either way. We don't leave people guessing.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY — retained "being considered" form -->
+<section class="apply" id="apply">
+  <div class="apply-art">
+    <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1440" height="700" fill="#06180f"/>
+      <g stroke="#9aa39c" stroke-width="1" fill="none" opacity="0.6"><circle cx="200" cy="160" r="120"/><circle cx="1240" cy="540" r="160"/><circle cx="720" cy="350" r="220"/></g>
+      <g fill="#9aa39c"><circle cx="200" cy="160" r="4"/><circle cx="1240" cy="540" r="4"/><circle cx="720" cy="350" r="5"/></g>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="apply-head r">
+      <span class="label">Request an invitation</span>
+      <h2>You are not signing up.<br>You are being considered.</h2>
+      <p>A few quiet questions. Each read by the committee, never a bot.</p>
+    </div>
+
+    <div class="form-wrap r d1">
+      <div class="form-rail" id="rail">
+        <span class="rail-dot on"><span class="rl"></span>You</span>
+        <span class="rail-dot"><span class="rl"></span>Work</span>
+        <span class="rail-dot"><span class="rl"></span>Intent</span>
+        <span class="rail-dot"><span class="rl"></span>CV</span>
+      </div>
+
+      <form id="form" novalidate>
+        <div class="fstep on" data-s="0">
+          <span class="q-label">Step one of four</span>
+          <h3>Who are you?</h3>
+          <p class="sub">The essentials, so we know who we're considering.</p>
+          <div class="fld"><label>Full name</label><input type="text" name="name" required placeholder="Your name"></div>
+          <div class="duo">
+            <div class="fld"><label>Email</label><input type="email" name="email" required placeholder="you@email.com"></div>
+            <div class="fld"><label>Phone / WhatsApp</label><input type="tel" name="phone" required placeholder="+250…"></div>
+          </div>
+          <div class="duo">
+            <div class="fld"><label>Country of origin</label>
+              <select name="country" required><option value="">Select</option><option>Nigeria</option><option>Ghana</option><option>Cameroon</option><option>Sierra Leone</option><option>Liberia</option><option>Senegal</option><option>Côte d'Ivoire</option><option>Benin</option><option>Togo</option><option>Guinea</option><option>The Gambia</option><option>Mali</option><option>Burkina Faso</option><option>Guinea-Bissau</option><option>Cabo Verde</option><option>Other West African nation</option></select>
+            </div>
+            <div class="fld"><label>Years in Kigali</label>
+              <select name="years" required><option value="">Select</option><option>Under three months</option><option>Less than a year</option><option>One to two years</option><option>Three to five years</option><option>More than five years</option></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="fstep" data-s="1">
+          <span class="q-label">Step two of four</span>
+          <h3>What do you do?</h3>
+          <p class="sub">How the committee comes to know you.</p>
+          <div class="fld"><label>Current role / title</label><input type="text" name="role" required placeholder="e.g. Founder, Country Director, Consultant"></div>
+          <div class="fld"><label>Where you currently work</label><input type="text" name="company" required placeholder="Company or organisation"></div>
+          <div class="duo">
+            <div class="fld"><label>Industry</label><input type="text" name="industry" required placeholder="e.g. Fintech, Health, Development"></div>
+            <div class="fld"><label>Highest education</label>
+              <select name="education" required><option value="">Select</option><option>Diploma / Professional certificate</option><option>Bachelor's degree</option><option>Master's degree</option><option>Doctorate / PhD</option><option>Professional qualification (CA, Bar, MD…)</option></select>
+            </div>
+          </div>
+          <div class="fld"><label>LinkedIn <span class="opt">(recommended)</span></label><input type="url" name="linkedin" placeholder="linkedin.com/in/…"></div>
+        </div>
+
+        <div class="fstep" data-s="2">
+          <span class="q-label">Step three of four</span>
+          <h3>Why WAPNIK?</h3>
+          <p class="sub">In your own words. Sound like a person, not a résumé.</p>
+          <div class="fld"><label>What draws you to this network?</label><textarea name="motivation" required placeholder="What are you hoping to find here?"></textarea></div>
+          <div class="fld"><label>What would you bring to the room?</label><textarea name="contribution" required placeholder="The best members give before they take."></textarea></div>
+          <div class="fld"><label>Were you referred? <span class="opt">(optional)</span></label><input type="text" name="referrer" placeholder="A member's name, if any"></div>
+        </div>
+
+        <div class="fstep" data-s="3">
+          <span class="q-label">Step four of four</span>
+          <h3>Your CV.</h3>
+          <p class="sub">Held in confidence. Central to how we consider you.</p>
+          <div class="fld">
+            <label class="upload-q" for="cv">
+              <span class="ul">Attach your CV</span>
+              <span class="us">PDF or Word · up to 10MB</span>
+              <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+              <div class="uf" id="cvName"></div>
+            </label>
+          </div>
+          <label class="consent"><input type="checkbox" required><span>I confirm what I have shared is true, and I am comfortable with the committee reviewing it in confidence.</span></label>
+          <label class="consent"><input type="checkbox" required><span>I understand membership is by consideration and decision, and that a brief conversation may follow.</span></label>
+        </div>
+
+        <div class="form-nav">
+          <button type="button" class="back" id="back" style="visibility:hidden">&larr; Back</button>
+          <button type="button" class="fwd ghost" id="fwd">Continue <span class="ln"></span></button>
+          <button type="submit" class="fwd solid" id="send" style="display:none">Submit for consideration</button>
+        </div>
+      </form>
+
+      <div class="done-state" id="done">
+        <div class="mark">&#10003;</div>
+        <h3>You have been put forward.</h3>
+        <p>The committee will consider your request with care, and reach out either way.</p>
+        <p>We don't leave people in silence.</p>
+        <div class="fine">In confidence · WAPNIK Membership Committee</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <div class="mk">WAPNIK</div>
+      <div class="tag">Friendship. Community. Opportunity.</div>
+      <p>West African professionals building lives and careers in Kigali.</p>
+    </div>
+    <div class="foot-col"><h4>Explore</h4><a href="#ethos">Ethos</a><a href="#who">Who we are</a><a href="#events">Events</a><a href="#process">How to join</a><a href="#faq">FAQ</a></div>
+    <div class="foot-col"><h4>Connect</h4><a href="#apply">Request an invitation</a><a href="mailto:hello@wapnik.com">hello@wapnik.com</a><p>Kigali, Rwanda</p><a href="#">@wapnik</a></div>
+  </div>
+  <div class="foot-bottom"><div class="wrap"><div class="tagline">One community. Many possibilities. Endless connections.</div><div class="copy">© 2026 WAPNIK · West African Professionals Network in Kigali</div></div></div>
+</footer>
+
+<script>
+// hero ignition
+requestAnimationFrame(function(){setTimeout(function(){document.getElementById('top').classList.add('lit');},120);});
+// nav state
+var hdr=document.getElementById('hdr');
+addEventListener('scroll',function(){hdr.classList.toggle('scrolled',scrollY>40);},{passive:true});
+// reveals
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.16,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.r').forEach(function(el){io.observe(el);});
+
+// membership privilege imagery
+function privImg(i){
+  var bg=['#13402f','#1c5740','#0e3325','#16271f'][i];
+  var fg=['#0a2418','#0c2a1f','#0a1f17','#0a1410'][i];
+  var motif=[
+    '<g fill="none" stroke="#c4ccc5" stroke-width="1.4" opacity="0.6"><circle cx="200" cy="80" r="40"/><circle cx="150" cy="120" r="30"/><circle cx="250" cy="120" r="30"/></g>',
+    '<g fill="none" stroke="#c4ccc5" stroke-width="1.4" opacity="0.6"><path d="M120 130 L180 70 L240 130 L300 70"/><circle cx="320" cy="60" r="6" fill="#c4ccc5"/></g>',
+    '<g fill="none" stroke="#c4ccc5" stroke-width="1.4" opacity="0.6"><path d="M150 130 L150 80 L200 50 L250 80 L250 130"/><rect x="185" y="95" width="30" height="35"/></g>',
+    '<g fill="none" stroke="#c4ccc5" stroke-width="1.4" opacity="0.6"><path d="M120 120 Q200 40 280 120" /><circle cx="200" cy="70" r="5" fill="#c4ccc5"/></g>'
+  ][i];
+  return '<svg viewBox="0 0 400 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pg'+i+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+bg+'"/><stop offset="1" stop-color="'+fg+'"/></linearGradient></defs><rect width="400" height="170" fill="url(#pg'+i+')"/>'+motif+'<g fill="'+fg+'" opacity="0.6"><circle cx="120" cy="150" r="26"/><circle cx="280" cy="150" r="26"/></g></svg>';
+}
+var privs=[
+  {n:'I',t:'Real friendships',d:'A circle that gets where you come from, and where you\'re headed.'},
+  {n:'II',t:'Professional growth',d:'Warm introductions, mentorship, and opportunities off the job board.'},
+  {n:'III',t:'A softer landing',d:'Trusted advice on housing, schools, and life in Kigali.'},
+  {n:'IV',t:'Home, away',d:'The food, the language, the celebrations. West Africa, kept alive.'}
+];
+document.getElementById('pgrid').innerHTML=privs.map(function(p,i){
+  return '<article class="pcard"><div class="pimg">'+privImg(i)+'</div><div class="pbody"><div class="pn">'+p.n+'</div><h3>'+p.t+'</h3><p>'+p.d+'</p></div></article>';
+}).join('');
+
+// EVENTS
+function evArt(a,b,k){
+  return '<svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="eg'+k+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+a+'"/><stop offset="1" stop-color="'+b+'"/></linearGradient></defs><rect width="400" height="220" fill="url(#eg'+k+')"/><g stroke="#e4e9e4" stroke-width="1.2" fill="none" opacity="0.45"><circle cx="320" cy="50" r="40"/><circle cx="70" cy="180" r="55"/></g><g fill="#06180f" opacity="0.5"><circle cx="120" cy="120" r="20"/><path d="M92 178 Q120 130 148 178Z"/><circle cx="180" cy="108" r="22"/><path d="M150 172 Q180 120 210 172Z"/><circle cx="244" cy="122" r="19"/><path d="M218 176 Q244 132 270 176Z"/></g><ellipse cx="200" cy="168" rx="60" ry="14" fill="#c4ccc5" opacity="0.14"/></svg>';
+}
+var events=[
+  {cat:'network',tag:'Monthly',when:'Last Friday',title:'Networking Dinner',desc:'A long table, good food, introductions that go somewhere.',c:['#13402f','#06180f']},
+  {cat:'network',tag:'Monthly',when:'Saturday mornings',title:'Coffee &amp; Brunch',desc:'Low-key, no agenda. Good people, better conversation.',c:['#1c5740','#0a2418']},
+  {cat:'growth',tag:'Quarterly',when:'By invitation',title:'Founder Roundtable',desc:'Closed-door rooms where leaders trade what works.',c:['#0e3325','#06180f']},
+  {cat:'growth',tag:'Quarterly',when:'Rotating venues',title:'Development Sessions',desc:'Masterclasses and leadership talks to keep you sharp.',c:['#13402f','#0a2418']},
+  {cat:'family',tag:'Twice a year',when:'Weekend afternoons',title:'Family Picnics',desc:'Bring the kids and the partner. Everyone you love.',c:['#1c5740','#13402f']},
+  {cat:'family',tag:'Twice a year',when:'Seasonal',title:'Cultural Celebrations',desc:'The music, the food, the colour. West Africa, alive in Kigali.',c:['#0e3325','#102e22']},
+  {cat:'signature',tag:'Annual · Signature',when:'Black tie',title:'The WAPNIK Gala',desc:'Our flagship evening. The night everyone clears their calendar for.',c:['#1f3a2d','#0a1410']},
+  {cat:'network',tag:'Ongoing',when:'Member-to-member',title:'Introductions &amp; Referrals',desc:'A quiet word to the right person. The most valuable thing we do.',c:['#13402f','#06180f']}
+];
+var grid=document.getElementById('evGrid');
+function renderEvents(filter){
+  filter=filter||'all';
+  grid.innerHTML=events.filter(function(e){return filter==='all'||e.cat===filter;}).map(function(e,i){
+    return '<article class="ev-card" tabindex="0"><div class="ev-media">'+evArt(e.c[0],e.c[1],i)+'<span class="ev-tag">'+e.tag+'</span></div><div class="ev-body"><div class="when">'+e.when+'</div><h3>'+e.title+'</h3><p>'+e.desc+'</p><div class="ev-foot">Members only <span class="arr">&rarr;</span></div></div></article>';
+  }).join('');
+}
+renderEvents();
+document.getElementById('evFilter').addEventListener('click',function(e){
+  if(e.target.tagName!=='BUTTON')return;
+  document.querySelectorAll('#evFilter button').forEach(function(b){b.classList.remove('active');});
+  e.target.classList.add('active');
+  renderEvents(e.target.dataset.f);
+});
+
+// multi-step form
+var steps=[].slice.call(document.querySelectorAll('.fstep'));
+var rail=[].slice.call(document.querySelectorAll('.rail-dot'));
+var cur=0;
+var back=document.getElementById('back'),fwd=document.getElementById('fwd'),send=document.getElementById('send'),form=document.getElementById('form');
+function paint(){
+  steps.forEach(function(s,i){s.classList.toggle('on',i===cur);});
+  rail.forEach(function(d,i){d.classList.toggle('on',i===cur);d.classList.toggle('done',i<cur);});
+  back.style.visibility=cur===0?'hidden':'visible';
+  var last=cur===steps.length-1;
+  fwd.style.display=last?'none':'inline-flex';
+  send.style.display=last?'inline-flex':'none';
+  document.getElementById('apply').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function valid(){var f=steps[cur].querySelectorAll('input,select,textarea');for(var i=0;i<f.length;i++){if(!f[i].checkValidity()){f[i].reportValidity();return false;}}return true;}
+fwd.addEventListener('click',function(){if(valid()){cur++;paint();}});
+back.addEventListener('click',function(){cur--;paint();});
+document.getElementById('cv').addEventListener('change',function(e){var n=e.target.files[0]&&e.target.files[0].name;if(n)document.getElementById('cvName').textContent=n;});
+form.addEventListener('submit',function(e){e.preventDefault();if(!valid())return;form.style.display='none';document.getElementById('rail').style.display='none';document.getElementById('done').classList.add('show');document.getElementById('apply').scrollIntoView({behavior:'smooth',block:'start'});});
+</script>
+</body>
+</html>

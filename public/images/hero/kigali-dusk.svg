@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1200" viewBox="0 0 2000 1200" preserveAspectRatio="xMidYMid slice" role="img">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16412f"/><stop offset="1" stop-color="#07140d"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.2" r="0.7">
+      <stop offset="0" stop-color="#1f5640" stop-opacity="0.5"/><stop offset="1" stop-color="#1f5640" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="2000" height="1200" fill="url(#g)"/>
+  <rect width="2000" height="1200" fill="url(#glow)"/>
+  
+    <path d="M0 744 Q 500 600 1000 720 T 2000 672.0000000000001 V 1200 H0 Z" fill="#0c2418" opacity="0.55"/>
+    <path d="M0 864 Q 600 744 1240 840 T 2000 816.0000000000001 V 1200 H0 Z" fill="#091c12" opacity="0.7"/><circle cx="133" cy="696" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="273" cy="703" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="412" cy="710" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="533" cy="717" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="673" cy="696" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="812" cy="703" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="933" cy="710" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="1073" cy="717" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="1212" cy="696" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="1333" cy="703" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="1473" cy="710" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="1612" cy="717" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="1733" cy="696" r="1.5" fill="#cdd5ce" opacity="0.45"/><circle cx="1873" cy="703" r="1.5" fill="#cdd5ce" opacity="0.45"/>
+  <g fill="none" stroke="#9aa39c" stroke-width="1" opacity="0.18">
+    <circle cx="1560" cy="288" r="192"/>
+  </g>
+  <text x="50%" y="594" text-anchor="middle" font-family="Georgia, serif" font-style="italic"
+        font-size="44" fill="#c4ccc5" opacity="0.85">Kigali skyline at dusk</text>
+  <text x="50%" y="644" text-anchor="middle" font-family="Inter, Arial, sans-serif"
+        font-size="24" letter-spacing="3" fill="#9aa39c" opacity="0.7">HERO · WEST AFRICAN PROFESSIONALS</text>
+</svg>
