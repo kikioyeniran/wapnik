@@ -8,16 +8,16 @@
 {{-- APPLY — drenched emerald, the form is the page. Ambient image behind. --}}
 <section class="relative overflow-hidden bg-gradient-to-b from-emerald-deep to-emerald pt-36 pb-[14vh] text-cream md:pt-40">
   {{-- INTENDED PHOTO: quiet Kigali evening, ambient, very low opacity. --}}
-  <img src="{{ asset('images/apply/ambient.svg') }}" alt="" aria-hidden="true" loading="lazy"
+  <img src="{{ asset('images/apply/ambient.jpg') }}" alt="" aria-hidden="true" loading="lazy" data-parallax
        class="absolute inset-0 h-full w-full object-cover opacity-[0.12]">
 
   <div class="relative mx-auto max-w-[1240px] px-6 md:px-10">
     <div class="mx-auto max-w-[720px] text-center">
-      <span class="inline-flex items-center justify-center gap-3.5 text-[0.7rem] font-medium uppercase tracking-[0.32em] text-gold-light">Request an invitation</span>
-      <h1 class="mt-6 font-display text-[clamp(2.4rem,6vw,4.4rem)] font-light leading-[1.05] tracking-[-0.02em]">
+      <span data-reveal class="inline-flex items-center justify-center gap-3.5 text-[0.7rem] font-medium uppercase tracking-[0.32em] text-gold-light">Request an invitation</span>
+      <h1 data-reveal class="mt-6 font-display text-[clamp(2.4rem,6vw,4.4rem)] font-light leading-[1.05] tracking-[-0.02em]">
         You are not signing up.<br>You are being considered.
       </h1>
-      <p class="mx-auto mt-6 max-w-[48ch] font-light text-cream/65">A few quiet questions. Each read by the committee, never a bot.</p>
+      <p data-reveal class="mx-auto mt-6 max-w-[48ch] font-light text-cream/65">A few quiet questions. Each read by the committee, never a bot.</p>
     </div>
 
     {{-- ============ MULTI-STEP FORM (front-end only; action="#") ============ --}}
@@ -131,9 +131,9 @@
 <section class="bg-cream py-[13vh]">
   <div class="mx-auto max-w-[1240px] px-6 md:px-10">
     <div class="max-w-[640px]">
-      <span class="text-[0.7rem] font-medium uppercase tracking-[0.28em] text-gold">How to join</span>
-      <h2 class="mt-5 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-light leading-[1.04] tracking-[-0.02em]">Four steps. No shortcuts.</h2>
-      <p class="mt-5 font-light text-ink-soft">Screening is why the room feels the way it does. Here's what happens after you submit.</p>
+      <span data-reveal class="text-[0.7rem] font-medium uppercase tracking-[0.28em] text-gold">How to join</span>
+      <h2 data-reveal class="mt-5 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-light leading-[1.04] tracking-[-0.02em]">Four steps. No shortcuts.</h2>
+      <p data-reveal class="mt-5 font-light text-ink-soft">Screening is why the room feels the way it does. Here's what happens after you submit.</p>
     </div>
 
     <div class="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -144,7 +144,7 @@
         ['04', 'The decision', 'The committee decides together. A yes brings your first invitation.'],
       ]; @endphp
       @foreach ($steps as $s)
-        <div class="group relative">
+        <div data-reveal class="group relative">
           <div class="grid h-14 w-14 place-items-center rounded-full border border-gold font-display text-base font-light text-gold transition-colors duration-300 group-hover:bg-gold group-hover:text-emerald-deep">{{ $s[0] }}</div>
           <h3 class="mt-6 font-display text-lg font-normal text-emerald">{{ $s[1] }}</h3>
           <p class="mt-3 text-[0.92rem] font-light text-ink-soft">{{ $s[2] }}</p>
@@ -152,7 +152,7 @@
       @endforeach
     </div>
 
-    <div class="mt-14 max-w-[800px] rounded-md border border-line bg-cream-2 px-8 py-7 text-[1.05rem] font-light text-ink-soft">
+    <div data-reveal class="mt-14 max-w-[800px] rounded-md border border-line bg-cream-2 px-8 py-7 text-[1.05rem] font-light text-ink-soft">
       <strong class="font-medium text-emerald">Why so selective?</strong> A network is only as good as its people. We're honest about fit, for your sake as much as ours.
     </div>
   </div>
@@ -162,8 +162,8 @@
 <section class="bg-cream-2 py-[13vh]">
   <div class="mx-auto max-w-[1240px] px-6 md:px-10">
     <div class="mx-auto max-w-[880px] text-center">
-      <span class="text-[0.7rem] font-medium uppercase tracking-[0.28em] text-gold">Before you apply</span>
-      <h2 class="mt-5 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-light leading-[1.04] tracking-[-0.02em]">The questions everyone asks first.</h2>
+      <span data-reveal class="text-[0.7rem] font-medium uppercase tracking-[0.28em] text-gold">Before you apply</span>
+      <h2 data-reveal class="mt-5 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-light leading-[1.04] tracking-[-0.02em]">The questions everyone asks first.</h2>
     </div>
 
     <div class="mx-auto mt-12 max-w-[880px]">
@@ -175,7 +175,7 @@
         ['How long until I hear back?', "We review on a rolling basis. You'll hear from us either way. We don't leave people guessing."],
       ]; @endphp
       @foreach ($faqs as $faq)
-        <details class="group border-b border-line">
+        <details data-reveal class="group border-b border-line">
           <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-7 font-display text-xl font-normal text-emerald transition-colors duration-300 hover:text-gold [&::-webkit-details-marker]:hidden">
             {{ $faq[0] }}
             <span class="grid h-[30px] w-[30px] flex-none place-items-center rounded-full border border-gold text-gold transition-all duration-300 group-open:rotate-45 group-open:bg-gold group-open:text-paper">+</span>

@@ -10,10 +10,10 @@
   <div class="mx-auto max-w-[1240px] px-6 md:px-10">
     <div class="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end">
       <div>
-        <span class="text-[0.7rem] font-medium uppercase tracking-[0.32em] text-gold">Events &amp; experiences</span>
-        <h1 class="mt-6 max-w-[14ch] font-display text-[clamp(2.6rem,7vw,5.5rem)] font-light leading-[0.98] tracking-[-0.03em]">Where friendships are made.</h1>
+        <span data-reveal class="text-[0.7rem] font-medium uppercase tracking-[0.32em] text-gold">Events &amp; experiences</span>
+        <h1 data-reveal class="mt-6 max-w-[14ch] font-display text-[clamp(2.6rem,7vw,5.5rem)] font-light leading-[0.98] tracking-[-0.03em]">Where friendships are made.</h1>
       </div>
-      <p class="max-w-[40ch] font-light text-cream/70 lg:pb-3">From quiet coffees to the black-tie Gala. Filter by the room you want, and show up as life allows.</p>
+      <p data-reveal class="max-w-[40ch] font-light text-cream/70 lg:pb-3">From quiet coffees to the black-tie Gala. Filter by the room you want, and show up as life allows.</p>
     </div>
   </div>
 </header>
@@ -40,20 +40,20 @@
     </div>
 
     @php $events = [
-      ['cat' => 'network',   'tag' => 'Monthly',            'when' => 'Last Friday',        'title' => 'Networking Dinner',          'desc' => 'A long table, good food, introductions that go somewhere.', 'img' => 'events/networking-dinner.svg'],
-      ['cat' => 'network',   'tag' => 'Monthly',            'when' => 'Saturday mornings',  'title' => 'Coffee & Brunch',            'desc' => 'Low-key, no agenda. Good people, better conversation.', 'img' => 'events/coffee-brunch.svg'],
-      ['cat' => 'growth',    'tag' => 'Quarterly',          'when' => 'By invitation',      'title' => 'Founder Roundtable',         'desc' => 'Closed-door rooms where leaders trade what works.', 'img' => 'events/founder-roundtable.svg'],
-      ['cat' => 'growth',    'tag' => 'Quarterly',          'when' => 'Rotating venues',    'title' => 'Development Sessions',        'desc' => 'Masterclasses and leadership talks to keep you sharp.', 'img' => 'events/development.svg'],
-      ['cat' => 'family',    'tag' => 'Twice a year',       'when' => 'Weekend afternoons', 'title' => 'Family Picnics',             'desc' => 'Bring the kids and the partner. Everyone you love.', 'img' => 'events/family-picnic.svg'],
-      ['cat' => 'family',    'tag' => 'Twice a year',       'when' => 'Seasonal',           'title' => 'Cultural Celebrations',      'desc' => 'The music, the food, the colour. West Africa, alive in Kigali.', 'img' => 'events/cultural.svg'],
-      ['cat' => 'signature', 'tag' => 'Annual · Signature', 'when' => 'Black tie',          'title' => 'The WAPNIK Gala',            'desc' => 'Our flagship evening. The night everyone clears their calendar for.', 'img' => 'events/gala.svg'],
-      ['cat' => 'network',   'tag' => 'Ongoing',            'when' => 'Member-to-member',   'title' => 'Introductions & Referrals',  'desc' => 'A quiet word to the right person. The most valuable thing we do.', 'img' => 'events/introductions.svg'],
+      ['cat' => 'network',   'tag' => 'Monthly',            'when' => 'Last Friday',        'title' => 'Networking Dinner',          'desc' => 'A long table, good food, introductions that go somewhere.', 'img' => 'events/networking-dinner.jpg'],
+      ['cat' => 'network',   'tag' => 'Monthly',            'when' => 'Saturday mornings',  'title' => 'Coffee & Brunch',            'desc' => 'Low-key, no agenda. Good people, better conversation.', 'img' => 'events/coffee-brunch.jpg'],
+      ['cat' => 'growth',    'tag' => 'Quarterly',          'when' => 'By invitation',      'title' => 'Founder Roundtable',         'desc' => 'Closed-door rooms where leaders trade what works.', 'img' => 'events/founder-roundtable.jpg'],
+      ['cat' => 'growth',    'tag' => 'Quarterly',          'when' => 'Rotating venues',    'title' => 'Development Sessions',        'desc' => 'Masterclasses and leadership talks to keep you sharp.', 'img' => 'events/development.jpg'],
+      ['cat' => 'family',    'tag' => 'Twice a year',       'when' => 'Weekend afternoons', 'title' => 'Family Picnics',             'desc' => 'Bring the kids and the partner. Everyone you love.', 'img' => 'events/family-picnic.jpg'],
+      ['cat' => 'family',    'tag' => 'Twice a year',       'when' => 'Seasonal',           'title' => 'Cultural Celebrations',      'desc' => 'The music, the food, the colour. West Africa, alive in Kigali.', 'img' => 'events/cultural.jpg'],
+      ['cat' => 'signature', 'tag' => 'Annual · Signature', 'when' => 'Black tie',          'title' => 'The WAPNIK Gala',            'desc' => 'Our flagship evening. The night everyone clears their calendar for.', 'img' => 'events/gala.jpg'],
+      ['cat' => 'network',   'tag' => 'Ongoing',            'when' => 'Member-to-member',   'title' => 'Introductions & Referrals',  'desc' => 'A quiet word to the right person. The most valuable thing we do.', 'img' => 'events/introductions.jpg'],
     ]; @endphp
 
     <div data-ev-grid class="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
       @foreach ($events as $ev)
         @php $signature = $ev['cat'] === 'signature'; @endphp
-        <article data-cat="{{ $ev['cat'] }}"
+        <article data-cat="{{ $ev['cat'] }}" data-reveal
           class="group flex flex-col overflow-hidden rounded-md border bg-paper transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-2 hover:shadow-[0_40px_70px_-36px_rgba(12,42,31,.36)]
                  {{ $signature ? 'border-gold/60 ring-1 ring-gold/30 sm:col-span-2 lg:col-span-1' : 'border-line' }}">
           <div class="relative overflow-hidden">
@@ -83,9 +83,9 @@
 <section class="bg-cream-2 py-[13vh]">
   <div class="mx-auto max-w-[1240px] px-6 md:px-10">
     <div class="max-w-[640px]">
-      <span class="text-[0.7rem] font-medium uppercase tracking-[0.28em] text-gold">Our annual rhythm</span>
-      <h2 class="mt-5 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-light leading-[1.04] tracking-[-0.02em]">Show up as life allows.</h2>
-      <p class="mt-5 font-light text-ink-soft">Always something on. No pressure. A standing invitation.</p>
+      <span data-reveal class="text-[0.7rem] font-medium uppercase tracking-[0.28em] text-gold">Our annual rhythm</span>
+      <h2 data-reveal class="mt-5 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-light leading-[1.04] tracking-[-0.02em]">Show up as life allows.</h2>
+      <p data-reveal class="mt-5 font-light text-ink-soft">Always something on. No pressure. A standing invitation.</p>
     </div>
 
     <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -95,7 +95,7 @@
         ['Twice a year', ['Family picnic', 'Cultural celebration']],
       ]; @endphp
       @foreach ($cadences as $c)
-        <div class="rounded-md border border-line bg-paper p-8">
+        <div data-reveal class="rounded-md border border-line bg-paper p-8">
           <div class="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-gold">{{ $c[0] }}</div>
           <ul class="mt-5 flex flex-col gap-3.5">
             @foreach ($c[1] as $item)
@@ -107,7 +107,7 @@
         </div>
       @endforeach
 
-      <div class="rounded-md border border-gold/25 bg-emerald p-8 text-cream">
+      <div data-reveal class="rounded-md border border-gold/25 bg-emerald p-8 text-cream">
         <div class="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-gold-light">Once a year</div>
         <div class="mt-5 font-display text-2xl font-light leading-tight">The WAPNIK Gala</div>
         <p class="mt-3 text-[0.86rem] font-light text-cream/70">Our black-tie evening. The night everyone clears their calendar for.</p>

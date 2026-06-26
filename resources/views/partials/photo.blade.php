@@ -5,7 +5,7 @@
   real photo later — the grade keeps it coherent automatically.
 
   Params (via @include('partials.photo', [...])):
-    src     — path under public/images, e.g. 'events/gala.svg'
+    src     — path under public/images, e.g. 'events/gala.jpg'
     alt     — descriptive alt text (required for meaningful images)
     ratio   — aspect-ratio utility, default 'aspect-[4/3]'
     class   — extra classes on the figure wrapper

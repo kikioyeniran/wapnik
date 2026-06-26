@@ -82,12 +82,10 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 }
 @keyframes hero-draw { from { height: 0; } to { height: 52%; } }
 
-.hero-word .row { display: block; overflow: hidden; }
-.hero-word .row > span {
-  display: block;
-  animation: hero-rise 1.4s var(--ease-editorial) .15s both;
-}
-@keyframes hero-rise { from { transform: translateY(108%); } to { transform: translateY(0); } }
+/* Wordmark: split into letters + mask-revealed by Anime.js on load.
+   Each letter sits in an overflow-hidden cell so it rises from nothing. */
+.hero-ltr { display: inline-block; overflow: hidden; vertical-align: top; }
+.hero-ltr > span { display: inline-block; will-change: transform; }
 
 /* ================================================================== *
  * SIGNATURE MOMENT 3 — FORM-STEP TRANSITIONS
@@ -96,28 +94,21 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 /* Without JS, every step stays visible (a usable long-form fallback).
    With JS, only the active step shows and they animate between. */
 .js .fstep { display: none; }
-.fstep.is-active { display: block; animation: fstep-rise .9s var(--ease-editorial); }
+.fstep.is-active { display: block; } /* entrance handled by Anime.js field stagger */
 .done-state { display: none; }
-.done-state.is-shown { display: block; animation: fstep-rise 1s var(--ease-editorial); }
-@keyframes fstep-rise {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: none; }
-}
+.done-state.is-shown { display: block; } /* entrance handled by Anime.js */
 
 /* ------------------------------------------------------------------ *
- * Restrained scroll reveal — utility-driven (opacity/translate toggled
- * by JS). Default state is visible-after-paint friendly; if JS or
- * reduced-motion is in play, content stays put.
+ * SCROLL REVEALS + HERO ENTRANCE (driven by GSAP / Anime.js in app.js).
+ * The initial hidden state applies ONLY when JS is present AND motion is
+ * allowed — so no-JS visitors, reduced-motion users, and headless/SEO
+ * renderers always see content, and there's no flash before the libs run.
  * ------------------------------------------------------------------ */
-/* hidden state applies ONLY when JS is present (html.js), so the page is
-   never blank without JS or in a headless render */
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 1s var(--ease-editorial), transform 1s var(--ease-editorial);
-  will-change: opacity, transform;
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal]      { opacity: 0; transform: translateY(30px); will-change: opacity, transform; }
+  .js [data-hero-el]     { opacity: 0; }
+  .js [data-hero-letters]{ opacity: 0; }
 }
-.js [data-reveal].is-in { opacity: 1; transform: none; }
 
 /* ================================================================== *
  * REDUCED MOTION — collapse every signature moment to static.
@@ -127,6 +118,4 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
   *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; }
   .marquee-track { animation: none !important; }
   .hero-guide { height: 52%; }
-  .hero-word .row > span { transform: none; }
-  [data-reveal] { opacity: 1; transform: none; }
 }
